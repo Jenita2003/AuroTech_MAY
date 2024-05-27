@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title>To-Do List</title>
+        <h1><B></B>MY TO-DO-LIST</B></h1>
+    </head>
+    <body>
+        <div class="container">
+            <input type="text" id="taskInput" placeholder="Enter the task">
+            <button id="addNewTask"><b>Add Task</b></button>
+            <ul id="task-list"></ul>
+        </div>  
+    </body>
+    <style>
+        h1{
+            margin-left: 500px;
+        }
+        .container {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 10px;
+    width: 560px;
+    height: 320px;
+    text-align: center;
+    margin-bottom: 90px;
+    margin-left: 300px;
+    border: 1.5px solid white;
+    }
+    body{
+        background-image: url('https://www.stylist.co.uk/images/app/uploads/2021/06/01164914/to-do-list-1680x880.jpg?w=1680&h=880&fit=max&auto=format%2Ccompress');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    button:hover {
+    color: black;
+    background-color: #1ffa31;
+    }
+    button{
+        font-size: 18px;
+    }
+    button{
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 25px;
+        height: 45px;
+        width: 125px;   
+    }
+    #taskInput{
+        height: 45px;
+        width:430px;
+        border: 1.5px solid white;
+        border-radius: 28px;
+        color: rgb(6, 6, 6);
+        font-size: 20px;
+    }
+    #task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+       .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #605f5f;
+        }
+        .task.completed {
+            text-decoration: line-through;
+            color: #f75ed8;
+        }
+        .task button:hover {
+            background-color: #fa1b1b;
+        }
+        .task button {
+            font-weight: bold;
+            font-size: 18px;
+            color: rgb(255, 255, 255);
+            border-radius: 25px;
+            height: 45px;
+            width: 125px; 
+        }
+        .task span {
+            font-size: 25px; 
+        }
+    </style>
+    <script>
+        const taskList = document.getElementById('task-list');
+        const addTaskButton = document.getElementById('addNewTask');
+
+        addTaskButton.addEventListener('click', () => {
+            const newTaskInput = document.getElementById('taskInput');
+            const taskText = newTaskInput.value.trim();
+
+            if(taskText) {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task';
+                taskItem.innerHTML = 
+                `<span>${taskText}</span><button>Delete</button>`;
+                
+
+                taskItem.querySelector('span').addEventListener('click', () => {
+                    taskItem.classList.toggle('completed');
+                });
+
+                taskItem.querySelector('button').addEventListener('click', () => {
+                    taskList.removeChild(taskItem);
+                });
+
+                taskList.appendChild(taskItem);
+                newTaskInput.value = '';
+            }
+        });
+    </script>
+    
+</html>
